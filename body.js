@@ -13,22 +13,17 @@ eventPool.on('DELIVERED', deliveryHandle);
 
 
 function payloadCreation () {
-  let company = chance.company();
-  let orderID = chance.guid();
-  let customer =  chance.name();
-  let address = chance.address();
-  
   const payload =  {
       time: new Date,
-      store: company,
-      orderID: orderID,
-      customer: customer,
-      address: address,
+      store: 'GIZMOS',
+      orderID: chance.guid(),
+      customer: chance.name(),
+      address: chance.address(),
       }
       return payload;
   }
 
 setInterval(() => {
   let payload = payloadCreation();
-  eventPool.emit('PICK-UP', { payload })
+  eventPool.emit('PICK-UP', { PAYLOAD: payload })
 }, 3000);
