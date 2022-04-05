@@ -3,14 +3,6 @@
 const vendor = require('./vendor.js');
 const eventPool = require('../../eventPool.js');
 
-const payload =  {
-  time: new Date,
-  store: 'company',
-  orderID: 'orderID',
-  customer: 'customer',
-  address: 'address',
-  }
-
 
 jest.mock('../../eventPool.js', () => {
   return {
@@ -21,7 +13,10 @@ jest.mock('../../eventPool.js', () => {
 
 describe('testing vendor module', () => {
   test ('Emits IN-TRANSIT', () => {;
-    vendor(payload)
-    expect(eventPool.emit).toHaveBeenCalledWith('IN-TRANSIT', payload)
+    vendor('test');
+    
+    expect(eventPool.emit).toHaveBeenCalledWith('IN-TRANSIT', 
+    expect.objectContaining({store: 'test'}),
+    )
   })
 })
