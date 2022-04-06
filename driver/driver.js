@@ -9,10 +9,10 @@ server.on('PICKUP_REQUESTED', (payload) => {
         console.log(`ORDER STATUS: Order for ${payload.payload.orderID} is currently IN TRANSIT.`)
       case 2:
         server.emit('DAMAGED', payload)
-        console.log(`ORDER STATUS: Order for ${payload.payload.orderID} has been damaged. Please Contact Shipper.`)
+        console.log(`ORDER STATUS: Order for ${payload.payload.orderID} has been DAMAGED. PLEASE CONTACT SHIPPER.`)
       case 3:
         server.emit('DELAYED', payload)
-        console.log(`ORDER STATUS: Order for ${payload.payload.orderID} has been delayed.`)
+        console.log(`ORDER STATUS: Order for ${payload.payload.orderID} has been DELAYED.`)
     }
   }, 2000)
 })
