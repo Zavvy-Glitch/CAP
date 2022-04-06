@@ -2,10 +2,27 @@ const io = require('socket.io')(3000);
 const server = io.of('/hub');
 const Log = require('../library/logger.js');
 
+
+
 server.on('connection', socket => {
   console.log('Starting up CAPS...' + socket.id);
-  
+  const chance = require('../chance.js');
 
+  setInterval(async () => {
+   let custOrder = {
+    date: new Date(),
+    payload: {
+      store: 'GIZMOS',
+      orderID: chance.guid(),
+      customer: chance.name(),
+      address: chance.address()
+    }
+  }
+
+    server.emit('ORDER_RECEIVED', custOrder);
+    console.log('Customer order received with orderID ',custOrder.payload.orderID);
+}, 5000);
+  
   socket.on('ORDER_RECEIVED', (payload) => {
     let log = new Log('ORDER-RECEIVED', payload);
     console.log(log);
@@ -18,7 +35,7 @@ server.on('connection', socket => {
   });
   
   socket.on('PICKUP_REQUESTED', (payload) => {
-    let log = new Log('Scheduled for Pickup', payload);
+    let log = new Log('SCHEDULED FOR PICKUP', payload);
     console.log(log);
     server.emit('PICKUP_REQUESTED', payload)
   });
@@ -36,7 +53,7 @@ server.on('connection', socket => {
   })
   
   socket.on('DAMAGED', (payload) => {
-    let log = new Log('Package DAMAGED during transit - RETURNED to vendor');
+    let log = new Log('PACKAGE DAMAGED DURING TRANSIT - RETURNED TO VENDOR');
     console.log(log);
     server.emit('DELAYED', payload);
   })
