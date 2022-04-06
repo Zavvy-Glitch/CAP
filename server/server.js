@@ -1,7 +1,7 @@
-const io = require('socket.io')(3000);
+const { Server } = require('socket.io');
+const io = new Server(3000)
 const server = io.of('/hub');
 const Log = require('../library/logger.js');
-
 
 
 server.on('connection', socket => {
