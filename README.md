@@ -16,6 +16,8 @@ The goal of this lab is to create a namespaced Socket.io event server, and to co
 
 The expected output of the 3 running applications is the same as it was in Phase 2.
 
+![Untitled (4)](https://user-images.githubusercontent.com/84699682/161871371-496d2ea7-2142-47ef-a07f-e772199a2ae9.jpg)
+
 ### Global Event Pool (HUB)
   - Use the socket.io npm package to configure an event Server that can be started at a designated port using node.
 
