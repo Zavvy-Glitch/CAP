@@ -2,7 +2,8 @@
 
 const MessageClient = require('../library/MessageClient.js')
 const chance = require('../library/chance.js');
-const messageQueue = new MessageClient('orders')
+
+const messageQueue = new MessageClient('pickup')
 
 setInterval(async () => {
  let custOrder = {

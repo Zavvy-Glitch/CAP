@@ -1,15 +1,8 @@
 'use strict';
 
-// const { io } = require('socket.io-client');
-// const server = io.connect('http://localhost:3000/caps');
-
-// const vendorId = 'Gizmos'
-
-// server.emit('join', { roomId: vendorId})
-
 const MessageClient = require('../library/MessageClient.js');
 
-const messageQueue = new MessageClient('orders')
+const messageQueue = new MessageClient('delivery')
 
 
 messageQueue.subscribe('PICKUP_REQUESTED', (payload) => {
